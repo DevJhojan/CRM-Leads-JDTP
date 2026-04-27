@@ -20,7 +20,7 @@ function BrandLogo({
       className={className}
     />
     <hr />
-    Edition 1.0.0
+    Edition 0.0.1
     </>
   );
 }
