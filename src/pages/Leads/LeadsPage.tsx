@@ -16,6 +16,7 @@ export const LeadsPage: React.FC = () => {
   const [search, setSearch] = React.useState("");
   const [leads, setLeads] = React.useState<Lead[]>(initialLeads);
   const [modalOpen, setModalOpen] = React.useState(false);
+  const [editingLead, setEditingLead] = React.useState<Lead | null>(null);
 
   const filteredLeads = React.useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -37,12 +38,19 @@ export const LeadsPage: React.FC = () => {
   }, [search, leads]);
 
   const handleAddLead = (data: Omit<Lead, "id" | "createdAt">) => {
-    const newLead: Lead = {
-      ...data,
-      id: (leads.length + 1).toString(),
-      createdAt: new Date().toISOString().slice(0, 10),
-    };
-    setLeads((prev) => [newLead, ...prev]);
+    if (editingLead) {
+      setLeads((prev) =>
+        prev.map((l) => (l.id === editingLead.id ? { ...l, ...data } : l)),
+      );
+      setEditingLead(null);
+    } else {
+      const newLead: Lead = {
+        ...data,
+        id: (leads.length + 1).toString(),
+        createdAt: new Date().toISOString().slice(0, 10),
+      };
+      setLeads((prev) => [newLead, ...prev]);
+    }
     setModalOpen(false);
   };
 
@@ -58,7 +66,12 @@ export const LeadsPage: React.FC = () => {
             software.
           </p>
         </div>
-        <Button variant="primary" size="md" onClick={() => setModalOpen(true)}>
+        <Button
+          className="btn-lead"
+          variant="primary"
+          size="md"
+          onClick={() => setModalOpen(true)}
+        >
           + Nuevo Cliente
         </Button>
       </div>
@@ -71,14 +84,23 @@ export const LeadsPage: React.FC = () => {
         <CardContent>
           <div style={{ overflowX: "auto" }} className="custom-scrollbar">
             <LeadsSearchInput value={search} onChange={setSearch} />
-            <LeadsTable leads={filteredLeads} />
+            <LeadsTable
+              leads={filteredLeads}
+              onEdit={(lead) => {
+                setEditingLead(lead);
+                setModalOpen(true);
+              }}
+            />
           </div>
         </CardContent>
       </Card>
       <LeadFormModal
         open={modalOpen}
-        onClose={() => setModalOpen(false)}
-        initialLead={null}
+        onClose={() => {
+          setModalOpen(false);
+          setEditingLead(null);
+        }}
+        initialLead={editingLead}
         onSubmit={handleAddLead}
       />
     </div>

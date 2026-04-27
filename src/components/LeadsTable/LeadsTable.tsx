@@ -40,6 +40,9 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads, onEdit }) => (
           <th className="h-12 px-4 text-left align-middle font-medium text-muted-foreground">
             Notas
           </th>
+          <th className="h-12 px-4 text-center align-middle font-medium text-muted-foreground">
+            Acciones
+          </th>
         </tr>
       </thead>
       <tbody className="[&_tr:last-child]:border-0">
@@ -54,6 +57,17 @@ export const LeadsTable: React.FC<LeadsTableProps> = ({ leads, onEdit }) => (
             <td className="px-4 py-2">{lead.budget || lead.value || ""}</td>
             <td className="px-4 py-2">{lead.clientType}</td>
             <td className="px-4 py-2">{lead.notes}</td>
+            <td className="px-4 py-2 text-center">
+              {onEdit && (
+                <button
+                  className="btn btn-secondary"
+                  style={{ fontSize: 13, padding: "4px 12px", borderRadius: 6 }}
+                  onClick={() => onEdit(lead)}
+                >
+                  Editar
+                </button>
+              )}
+            </td>
           </tr>
         ))}
       </tbody>
