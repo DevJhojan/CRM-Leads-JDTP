@@ -1,23 +1,13 @@
-# Vercel configuration for React + Vite + TypeScript
-
-# 1. Build Command
-# Vercel auto-detects Vite, but we specify for clarity
-buildCommand: npm run build
-
-# 2. Output Directory
-# Vite outputs to dist by default
-outputDirectory: dist
-
-# 3. Install Command (optional, defaults to npm install)
-installCommand: npm install
-
-# 4. Framework preset
-framework: vite
-
-# 5. Clean URLs (optional, for SPA routing)
-cleanUrls: true
-
-# 6. Rewrites for SPA (history fallback)
-rewrites:
-  - source: /((?!api).*)
-    destination: /index.html
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "framework": "vite",
+  "cleanUrls": true,
+  "rewrites": [
+    {
+      "source": "/((?!api).*)",
+      "destination": "/index.html"
+    }
+  ]
+}
