@@ -6,10 +6,16 @@ import { Lead } from "@/types/types";
 import { LeadsSearchInput } from "@/components/LeadsSearchInput/LeadsSearchInput";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { Leads } from "@/data/LeadsData";
-const leads: Lead[] = Leads;
+import { LeadFormModal } from "@/components/LeadFormModal/LeadFormModal";
+import { Button } from "@/components/ui/Button";
+
+const initialLeads: Lead[] = Leads;
+
 export const LeadsPage: React.FC = () => {
   useScrollReveal();
   const [search, setSearch] = React.useState("");
+  const [leads, setLeads] = React.useState<Lead[]>(initialLeads);
+  const [modalOpen, setModalOpen] = React.useState(false);
 
   const filteredLeads = React.useMemo(() => {
     const q = search.trim().toLowerCase();
@@ -28,18 +34,33 @@ export const LeadsPage: React.FC = () => {
         .filter(Boolean)
         .some((field) => (field ?? "").toLowerCase().includes(q)),
     );
-  }, [search]);
+  }, [search, leads]);
+
+  const handleAddLead = (data: Omit<Lead, "id" | "createdAt">) => {
+    const newLead: Lead = {
+      ...data,
+      id: (leads.length + 1).toString(),
+      createdAt: new Date().toISOString().slice(0, 10),
+    };
+    setLeads((prev) => [newLead, ...prev]);
+    setModalOpen(false);
+  };
 
   return (
     <div className="leads-root space-y-6">
-      <div>
-        <h2 className="text-3xl font-bold tracking-tight cyber-glow-text">
-          Clientes / Leads de Desarrollo de Software
-        </h2>
-        <p className="text-muted-foreground">
-          Gestiona tus prospectos, clientes y oportunidades para proyectos de
-          software.
-        </p>
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <div>
+          <h2 className="text-3xl font-bold tracking-tight cyber-glow-text">
+            Clientes / Leads de Desarrollo de Software
+          </h2>
+          <p className="text-muted-foreground">
+            Gestiona tus prospectos, clientes y oportunidades para proyectos de
+            software.
+          </p>
+        </div>
+        <Button variant="primary" size="md" onClick={() => setModalOpen(true)}>
+          + Nuevo Cliente
+        </Button>
       </div>
       <Card className="Card-leads cyber-glow">
         <CardHeader>
@@ -54,6 +75,12 @@ export const LeadsPage: React.FC = () => {
           </div>
         </CardContent>
       </Card>
+      <LeadFormModal
+        open={modalOpen}
+        onClose={() => setModalOpen(false)}
+        initialLead={null}
+        onSubmit={handleAddLead}
+      />
     </div>
   );
 };

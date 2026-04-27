@@ -12,12 +12,16 @@ function BrandLogo({
   decorative = false,
 }: BrandLogoProps) {
   return (
+    <>
     <img
       src={logo}
       alt={decorative ? "" : alt}
       aria-hidden={decorative}
       className={className}
     />
+    <hr />
+    Edition 1.0.0
+    </>
   );
 }
 

@@ -121,19 +121,19 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({
   if (!open) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/40">
-      <div className="bg-card p-6 rounded-xl shadow-xl cyber-glow min-w-[340px] relative w-full max-w-md">
+    <div className="lead-modal-overlay">
+      <div className="lead-modal-content">
         <button
-          className="absolute top-2 right-2 text-accent"
+          className="lead-modal-close"
           onClick={onClose}
           aria-label="Cerrar"
         >
           &times;
         </button>
-        <h3 className="text-lg font-bold mb-4 cyber-glow-text">
+        <h3 className="lead-modal-title">
           {initialLead ? "Editar Lead" : "Nuevo Lead"}
         </h3>
-        <form className="space-y-4" onSubmit={handleSubmit}>
+        <form className="lead-modal-form" onSubmit={handleSubmit}>
           <InputField
             label="Nombre"
             name="name"
@@ -170,12 +170,12 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({
             onChange={handleChange}
             options={projectTypeOptions}
           />
+          <label>Tecnologías</label>
           <select
             multiple
             name="techStack"
             value={form.techStack}
             onChange={handleTechStackChange}
-            className="w-full rounded-md p-2 border border-input bg-background"
           >
             {techStackOptions.map((opt) => (
               <option key={opt.value} value={opt.value}>
@@ -198,15 +198,22 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({
             onChange={handleChange}
             options={clientTypeOptions}
           />
+          <label>Notas</label>
           <textarea
             name="notes"
             value={form.notes}
             onChange={handleChange}
-            className="w-full rounded-md p-2 border border-input bg-background"
             placeholder="Notas"
             rows={3}
           />
-          <div className="flex justify-end gap-2 mt-4">
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "end",
+              gap: "0.5rem",
+              marginTop: "1.2rem",
+            }}
+          >
             <button
               type="button"
               className="btn btn-secondary"

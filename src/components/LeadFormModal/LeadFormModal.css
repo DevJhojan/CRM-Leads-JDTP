@@ -1,1 +1,124 @@
-/* Estilos específicos para LeadFormModal */
+.lead-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  background: rgba(10, 18, 32, 0.35);
+  backdrop-filter: blur(2.5px) saturate(1.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.25s;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lead-modal-content {
+  background: linear-gradient(120deg, #181c24 80%, #0fdcff11 100%);
+  border-radius: 1.25rem;
+  box-shadow:
+    0 8px 32px 0 #0fdcff44,
+    0 0 0 2px #0fdcff33 inset;
+  border: 2px solid #0fdcff99;
+  min-width: 340px;
+  max-width: 420px;
+  width: 100%;
+  padding: 2.5rem 2rem 2rem 2rem;
+  position: relative;
+  animation: modalPop 0.28s cubic-bezier(0.23, 1.01, 0.32, 1);
+  margin: 2.5vh 1.5vw;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+@keyframes modalPop {
+  from {
+    transform: scale(0.92) translateY(40px);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1) translateY(0);
+    opacity: 1;
+  }
+}
+
+.lead-modal-close {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  font-size: 2rem;
+  color: #0fdcff;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: color 0.18s;
+  z-index: 10;
+}
+.lead-modal-close:hover {
+  color: #ff3c00;
+}
+
+.lead-modal-title {
+  font-size: 1.35rem;
+  font-weight: bold;
+  margin-bottom: 1.2rem;
+  color: #0fdcff;
+  text-shadow:
+    0 0 8px #0fdcff99,
+    0 0 2px #fff8;
+  letter-spacing: 0.01em;
+}
+
+.lead-modal-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.lead-modal-form textarea,
+.lead-modal-form select,
+.lead-modal-form input {
+  background: var(--code-bg, #181c24);
+  color: var(--text-h, #f5f7ff);
+  border: 1.5px solid var(--accent-border, #0fdcff);
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 0;
+  width: 100%;
+  margin-top: 0.2rem;
+}
+
+.lead-modal-form label {
+  font-weight: 500;
+  color: #0fdcff;
+  margin-bottom: 0.2rem;
+}
+
+.lead-modal-form .btn {
+  min-width: 110px;
+}
+
+.lead-modal-form .btn-primary {
+  background: linear-gradient(90deg, #0fdcff 0%, #0fffc0 100%);
+  color: #181c24;
+  border: none;
+  font-weight: bold;
+  box-shadow: 0 2px 12px #0fdcff44;
+}
+.lead-modal-form .btn-primary:hover {
+  background: linear-gradient(90deg, #0fffc0 0%, #0fdcff 100%);
+}
+.lead-modal-form .btn-secondary {
+  background: #23263aee;
+  color: #0fdcff;
+  border: 1.5px solid #0fdcff99;
+}
+.lead-modal-form .btn-secondary:hover {
+  background: #0fdcff22;
+}
