@@ -1,0 +1,183 @@
+@import "./design.css";
+
+/* ── Shared Typographic Helpers ── */
+/* Importadas de design.css: .hero-kicker, .section-kicker, .section-head */
+
+/* ── Shared Buttons ── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  min-height: 46px;
+  padding: 0 22px;
+  border-radius: var(--radius-button);
+  position: relative;
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    transform var(--duration-fast),
+    box-shadow var(--duration-fast),
+    border-color 0.5s,
+    filter var(--duration-fast);
+  animation: cyber-glow-base var(--duration-glow-slow) ease-in-out infinite
+    alternate;
+}
+
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-button);
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 140, 0, 0.22),
+    rgba(0, 220, 255, 0.16)
+  );
+  opacity: 0.85;
+}
+
+.btn > * {
+  position: relative;
+  z-index: 1;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+  filter: brightness(1.05);
+}
+
+.btn-primary {
+  color: var(--text-h);
+  background: var(--gradient-warm-to-cool-light);
+  border: 1px solid var(--warm-semi);
+  box-shadow:
+    0 10px 24px -14px rgba(255, 136, 0, 0.88),
+    0 14px 30px -16px rgba(0, 220, 255, 0.72),
+    0 0 0 1px rgba(255, 136, 0, 0.3) inset;
+}
+
+.btn-secondary {
+  color: var(--text-h);
+  background: var(--gradient-warm-to-cool-light);
+  border: 1px solid rgba(255, 136, 0, 0.42);
+  box-shadow:
+    0 8px 20px -16px rgba(255, 136, 0, 0.88),
+    0 10px 22px -18px rgba(0, 220, 255, 0.8);
+}
+
+.btn:where(:hover, :focus-visible, :active) {
+  border-color: rgba(255, 157, 0, 0.6);
+  box-shadow:
+    0 12px 28px -12px rgba(255, 136, 0, 1),
+    0 16px 32px -14px rgba(0, 220, 255, 0.88),
+    0 0 0 1px rgba(0, 220, 255, 0.24) inset;
+}
+
+.btn-contact {
+  min-height: 58px;
+  font-size: 1rem;
+}
+
+/* ── Shared Contact Block ── */
+.future-form {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  border-radius: 14px;
+  clip-path: polygon(5% 0, 100% 0, 95% 100%, 0 100%);
+  border: 1px solid rgba(255, 159, 95, 0.34);
+  background: rgba(18, 18, 22, 0.62);
+  padding: 14px 16px;
+  box-shadow:
+    0 12px 30px -24px rgba(255, 159, 95, 0.5),
+    0 16px 32px -26px rgba(83, 169, 255, 0.45);
+  transition:
+    transform 0.26s ease,
+    border-color 0.26s ease,
+    box-shadow 0.3s ease;
+}
+
+.future-form::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    125deg,
+    rgba(255, 159, 95, 0.16),
+    rgba(83, 169, 255, 0.12)
+  );
+  z-index: 0;
+}
+
+.future-form > * {
+  position: relative;
+  z-index: 1;
+}
+
+.future-form:hover {
+  transform: translateY(-2px);
+  border-color: rgba(83, 169, 255, 0.48);
+  box-shadow:
+    0 16px 30px -24px rgba(255, 159, 95, 0.64),
+    0 18px 36px -24px rgba(83, 169, 255, 0.68);
+}
+
+.future-form h3 {
+  margin: 10px 0 4px;
+  font-size: 0.95rem;
+}
+
+.future-form p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.contact-grid {
+  display: grid;
+  gap: 12px;
+}
+
+.form-preview {
+  margin-top: 12px;
+  display: grid;
+  gap: 8px;
+}
+
+.form-preview span {
+  padding: 10px 14px;
+  text-align: center;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 159, 95, 0.3);
+  background: rgba(15, 15, 15, 0.8);
+  color: #8f97a7;
+  font-family: var(--mono);
+  font-size: 12px;
+}
+
+/* Animación movida a design.css */
+
+@media (prefers-reduced-motion: reduce) {
+  .btn {
+    animation: none;
+  }
+
+  .btn,
+  .future-form {
+    transition: none;
+  }
+
+  .future-form:hover,
+  .btn:hover {
+    transform: none;
+  }
+}
+
+@media (min-width: 768px) {
+  .contact-grid {
+    grid-template-columns: 1fr 1.1fr;
+    align-items: start;
+  }
+}

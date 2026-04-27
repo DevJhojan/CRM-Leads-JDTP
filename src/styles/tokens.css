@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&family=JetBrains+Mono:wght@400;600&display=swap");
+
+:root {
+  --text: #a8b0bd;
+  --text-h: #f5f7ff;
+  --bg: #0f0f0f;
+  --border: #1d1d1d;
+  --code-bg: #121216;
+  --accent: #ff9f5f;
+  --accent-cyan: #ff9f5f;
+  --accent-magenta: #53a9ff;
+  --accent-bg: rgba(255, 159, 95, 0.14);
+  --accent-border: rgba(255, 159, 95, 0.6);
+  --social-bg: rgba(18, 18, 22, 0.75);
+  --shadow:
+    rgba(255, 159, 95, 0.24) 0 0 24px -6px,
+    rgba(83, 169, 255, 0.2) 0 0 28px -10px;
+
+  --sans: Inter, "Segoe UI", sans-serif;
+  --heading: Inter, "Segoe UI", sans-serif;
+  --mono: "JetBrains Mono", Consolas, monospace;
+
+  /* Alto visual del header sticky en móvil */
+  --header-height: 96px;
+
+  @media (min-width: 768px) {
+    --header-height: 66px;
+  }
+
+  font: 18px/145% var(--sans);
+  letter-spacing: 0.18px;
+  color-scheme: dark;
+  color: var(--text);
+  background: var(--bg);
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  @media (max-width: 1024px) {
+    font-size: 16px;
+  }
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --text: #a8b0bd;
+    --text-h: #f5f7ff;
+    --bg: #0f0f0f;
+    --border: #1d1d1d;
+    --code-bg: #121216;
+    --accent: #ff9f5f;
+    --accent-cyan: #ff9f5f;
+    --accent-magenta: #53a9ff;
+    --accent-bg: rgba(255, 159, 95, 0.14);
+    --accent-border: rgba(255, 159, 95, 0.6);
+    --social-bg: rgba(18, 18, 22, 0.75);
+    --shadow:
+      rgba(255, 159, 95, 0.24) 0 0 24px -6px,
+      rgba(83, 169, 255, 0.2) 0 0 28px -10px;
+  }
+}

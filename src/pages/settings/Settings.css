@@ -1,0 +1,75 @@
+/* Formulario principal */
+.Card-settings {
+  background: var(--card-bg);
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+.settings-form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem 2rem;
+  align-items: center;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+@media (min-width: 768px) {
+  .settings-form {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* Etiquetas */
+.settings-label {
+  font-weight: 500;
+  text-align: left;
+  justify-self: end;
+  padding-right: 1rem;
+}
+
+.settings-label-full {
+  width: 100%;
+}
+
+/* Inputs generales */
+.settings-input {
+  background: var(--code-bg);
+  color: var(--text-h);
+  border: 1.5px solid var(--accent-border);
+  border-radius: 8px;
+  padding: 10px 14px;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Checkbox personalizados */
+.settings-checkbox {
+  accent-color: var(--accent);
+  justify-self: start;
+  width: 44px;
+  height: 24px;
+  border-radius: 16px;
+  background: var(--code-bg);
+  box-shadow: 0 0 8px 1px var(--accent-bg);
+  border: 2px solid var(--accent-border);
+  transition:
+    background 0.2s,
+    box-shadow 0.2s;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+    justify-content: space-around;
+  text-decoration: 0 0 8px 1px var(--accent-bg);
+  gap: 0.2rem;
+}
+h1,
+h2 {
+    padding: 2rem;
+  text-align: center;
+  margin-bottom: 1rem;
+}

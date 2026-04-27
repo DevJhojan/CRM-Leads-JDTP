@@ -1,0 +1,68 @@
+/* Estilos específicos para LeadsSearchInput */
+
+.leads-search-cyber {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 95%;
+  border-radius: var(--radius-button, 14px 0 14px 0);
+  margin-bottom: 1.5rem;
+  background: var(
+    --gradient-warm-to-cool-light,
+    linear-gradient(
+      135deg,
+      rgba(255, 110, 0, 0.1),
+      rgba(18, 18, 22, 0.88) 52%,
+      rgba(0, 220, 255, 0.1)
+    )
+  );
+  border: 1.5px solid var(--warm-semi, #ff8800);
+  box-shadow:
+    0 4px 18px -8px var(--warm-glow, #ff7800),
+    0 6px 20px -10px var(--cool-glow, #00dcff),
+    0 0 0 1.5px rgba(255, 136, 0, 0.13) inset;
+  padding: 2px 0 2px 0;
+  transition:
+    box-shadow 0.22s,
+    border-color 0.22s;
+}
+
+.leads-search-cyber:focus-within {
+  border-color: var(--cool-primary, #00dcff);
+  box-shadow:
+    0 6px 24px -8px var(--cool-glow, #00dcff),
+    0 8px 28px -10px var(--warm-glow, #ff7800),
+    0 0 0 2px var(--cool-primary, #00dcff) inset;
+}
+
+.leads-search-cyber input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-h, #f5f7ff);
+  font-family: var(--mono, "JetBrains Mono", monospace);
+  font-size: 1rem;
+  width: 100%;
+  padding: 10px 16px 10px 38px;
+  border-radius: var(--radius-button, 14px 0 14px 0);
+  transition:
+    background 0.18s,
+    color 0.18s;
+  box-shadow: none;
+}
+
+.leads-search-cyber input::placeholder {
+  color: #b6b6c7;
+  opacity: 0.7;
+  font-style: italic;
+}
+
+.leads-search-cyber svg {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--warm-primary, #ff8c00);
+  filter: drop-shadow(0 0 4px var(--warm-glow, #ff7800));
+  pointer-events: none;
+}

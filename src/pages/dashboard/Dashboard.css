@@ -1,0 +1,166 @@
+/* Lista de actividad reciente tipo tabla llamativa */
+.dashboard-activity-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  gap: 1.5rem;
+  margin-top: 1rem;
+  padding: 1rem;
+}
+
+.dashboard-activity-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 90%;
+  max-width: 700px;
+  background: linear-gradient(90deg, #2a1818 80%, #ff3c0011 100%);
+  border: 1.5px solid #ff3c0055;
+  border-radius: 1rem;
+  box-shadow: 0 0 12px 2px #ff3c0033;
+  padding: 1.1rem 1.5rem;
+  gap: 2rem;
+  transition:
+    box-shadow 0.18s,
+    border 0.18s;
+  cursor: pointer;
+}
+.dashboard-activity-item:hover {
+  box-shadow: 0 0 24px 4px #ff3c00cc;
+  border-color: #ff3c00cc;
+}
+.dashboard-activity-info {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 0.2rem;
+}
+.dashboard-activity-name {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #ffb6b6;
+  text-shadow: 0 0 4px #ff3c0099;
+}
+.dashboard-activity-email {
+  font-size: 0.98rem;
+  color: #ffb6b6cc;
+  text-shadow: 0 0 2px #ff3c0055;
+}
+.dashboard-activity-status {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 1.5rem;
+}
+/* Fila horizontal para stats */
+.dashboard-stats-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: stretch;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  flex-wrap: wrap;
+}
+.dashboard-stats-card {
+  min-width: 220px;
+  max-width: 320px;
+  flex: 1 1 220px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 1.25rem 0.5rem;
+}
+/* Fondo general cyber cálido */
+.dashboard-root {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #2a1818 60%, #ff3c0022 100%);
+  padding: 2rem 1rem;
+}
+
+/* Tarjetas cyber glow */
+.cyber-glow {
+  border: 2px solid #ff3c0099;
+  box-shadow:
+    0 0 24px 2px #ff3c0044,
+    0 0 0 2px #ff3c0011 inset;
+  background: linear-gradient(120deg, #2a1818 80%, #ff3c0011 100%);
+  border-radius: 1.25rem;
+  transition:
+    box-shadow 0.2s,
+    border 0.2s;
+}
+.cyber-glow:hover {
+  box-shadow:
+    0 0 32px 8px #ff3c00cc,
+    0 0 0 2px #ff3c0033 inset;
+  border-color: #ff3c00cc;
+}
+
+/* Textos con glow cálido */
+.cyber-glow-text {
+  color: #ffb6b6;
+  text-shadow:
+    0 0 8px #ff3c0099,
+    0 0 2px #fff8;
+  letter-spacing: 0.01em;
+}
+
+/* Badge de status */
+.cyber-badge {
+  border-radius: 999px;
+  background: linear-gradient(90deg, #ff3c0022 0%, #ffb6b611 100%);
+  border: 1.5px solid #ff3c0099;
+  color: #ff3c00;
+  box-shadow: 0 0 8px 1px #ff3c0044;
+  padding: 0.25rem 0.75rem;
+  font-weight: 600;
+  text-shadow: 0 0 4px #ff3c0099;
+  font-size: 0.85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+.cyber-badge.status-new {
+  background: linear-gradient(90deg, #ffb6b622 0%, #ff3c0022 100%);
+  color: #ff3c00;
+}
+.cyber-badge.status-contacted {
+  background: linear-gradient(90deg, #ffb86b22 0%, #ff3c0022 100%);
+  color: #ff7c00;
+}
+.cyber-badge.status-won {
+  background: linear-gradient(90deg, #ffe06622 0%, #ff3c0022 100%);
+  color: #ffd700;
+}
+
+/* Ajustes de grid y espaciado */
+.dashboard-root .grid {
+  gap: 2rem;
+}
+.dashboard-root .card {
+  margin-bottom: 1.5rem;
+}
+
+/* Scrollbar cyber */
+.dashboard-root {
+  scrollbar-width: thin;
+  scrollbar-color: #ff3c00 #2a1818;
+}
+.dashboard-root::-webkit-scrollbar {
+  width: 8px;
+}
+.dashboard-root::-webkit-scrollbar-thumb {
+  background: #ff3c0099;
+  border-radius: 8px;
+}
+.dashboard-root::-webkit-scrollbar-track {
+  background: #2a1818;
+}
