@@ -49,17 +49,41 @@ export function Layout(){
           </button>
         </div>
 
-        {/* Branding */}
-        <div
-          className= "Card-branding flex items-center gap-2 px-4 py-3 mb-6"
-        >
-          <BrandLogo />
+
+        {/* Branding y mensaje demo */}
+        <div className="Card-branding flex flex-col gap-1 px-4 py-3 mb-6">
+          <div className="flex items-center gap-2">
+            <BrandLogo />
+            {expanded && (
+              <>
+                <h1 className="font-extrabold tracking-tight text-xl mb-0.5 text-gradient block">
+                  CRM Leads
+                </h1>
+              </>
+            )}
+          </div>
           {expanded && (
-            <>
-              <h1 className="font-extrabold tracking-tight text-xl mb-0.5 text-gradient block">
-                CRM Leads
-              </h1>
-            </>
+            <span
+              style={{
+                fontSize: "0.68rem",
+                color: "#a6b0c6",
+                opacity: 0.85,
+                marginTop: 6,
+                marginBottom: 2,
+                lineHeight: 1.35,
+                fontWeight: 500,
+                letterSpacing: "-0.01em",
+                display: "block",
+                maxWidth: 200,
+                background: "linear-gradient(90deg, #23283a 80%, #0fdcff11 100%)",
+                borderLeft: "3px solid #0fdcff77",
+                padding: "7px 10px 7px 12px",
+                borderRadius: "0 8px 8px 0",
+                boxShadow: "0 1px 8px 0 #0fdcff11 inset",
+              }}
+            >
+              Demo conceptual: este CRM muestra una propuesta visual de referencia y su contenido puede adaptarse al negocio real.
+            </span>
           )}
         </div>
 
