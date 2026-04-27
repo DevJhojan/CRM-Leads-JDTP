@@ -1,0 +1,19 @@
+# Firebase/Env
+.env
+.env.*
+# Firebase emulators and local state
+.firebase/
+.firebaserc
+firebase-debug.log
+firebase-debug.*.log
+# Firebase Hosting cache
+.firebasehosting.*.cache
+# Service account keys (nunca subas esto)
+serviceAccountKey.json
+# Firestore local rules
+firestore.indexes.json
+firestore.rules
+storage.rules
+
+# Node
+node_modules/
