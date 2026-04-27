@@ -2,19 +2,20 @@ import * as React from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/Card";
 import { LeadsTable } from "@/components/LeadsTable/LeadsTable";
 import "./LeadsPages.css";
-import { Lead } from "@/types/types";
+
+import { useLeadStore } from "@/store/useLeadStore";
 import { LeadsSearchInput } from "@/components/LeadsSearchInput/LeadsSearchInput";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { Leads } from "@/data/LeadsData";
 import { LeadFormModal } from "@/components/LeadFormModal/LeadFormModal";
 import { Button } from "@/components/ui/Button";
-
-const initialLeads: Lead[] = Leads;
+import { Lead } from "@/types/types";
 
 export const LeadsPage: React.FC = () => {
   useScrollReveal();
+  const leads = useLeadStore((state) => state.leads);
+  const addLead = useLeadStore((state) => state.addLead);
+  const updateLead = useLeadStore((state) => state.updateLead);
   const [search, setSearch] = React.useState("");
-  const [leads, setLeads] = React.useState<Lead[]>(initialLeads);
   const [modalOpen, setModalOpen] = React.useState(false);
   const [editingLead, setEditingLead] = React.useState<Lead | null>(null);
 
@@ -39,17 +40,10 @@ export const LeadsPage: React.FC = () => {
 
   const handleAddLead = (data: Omit<Lead, "id" | "createdAt">) => {
     if (editingLead) {
-      setLeads((prev) =>
-        prev.map((l) => (l.id === editingLead.id ? { ...l, ...data } : l)),
-      );
+      updateLead(editingLead.id, data);
       setEditingLead(null);
     } else {
-      const newLead: Lead = {
-        ...data,
-        id: (leads.length + 1).toString(),
-        createdAt: new Date().toISOString().slice(0, 10),
-      };
-      setLeads((prev) => [newLead, ...prev]);
+      addLead(data);
     }
     setModalOpen(false);
   };

@@ -30,8 +30,8 @@ export const Dashboard: React.FC = () => {
       color: "#ffd700",
     },
     {
-      label: "Valor Total",
-      value: `$${leads.reduce((acc, l) => acc + (l.value || 0), 0)}`,
+      label: "Valor Total Presupuestado",
+      value: `$${leads.reduce((acc, l) => acc + (typeof l.budget === "number" ? l.budget : Number(l.budget) || 0), 0).toLocaleString("es-CO")}`,
       icon: TrendingUp,
       color: "#ff3c00",
     },

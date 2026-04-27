@@ -1,15 +1,14 @@
 import { create } from "zustand";
 import { Lead } from "@/types/types";
 
-interface LeadStore {
-  leads: Lead[];
-  addLead: (lead: Omit<Lead, "id" | "createdAt">) => void;
-  updateLead: (id: string, lead: Partial<Lead>) => void;
-  deleteLead: (id: string) => void;
-}
+const LOCAL_KEY = "crm_leads";
 
-export const useLeadStore = create<LeadStore>((set) => ({
-  leads: [
+function loadLeads(): Lead[] {
+  try {
+    const data = localStorage.getItem(LOCAL_KEY);
+    if (data) return JSON.parse(data);
+  } catch {}
+  return [
     {
       id: "1",
       name: "Empresa ABC",
@@ -52,24 +51,58 @@ export const useLeadStore = create<LeadStore>((set) => ({
       clientType: "Freelance",
       notes: "Quiere automatizar reportes en Google Sheets.",
     },
-  ],
+  ];
+}
+
+function saveLeads(leads: Lead[]) {
+  localStorage.setItem(LOCAL_KEY, JSON.stringify(leads));
+}
+
+interface LeadStore {
+  leads: Lead[];
+  addLead: (lead: Omit<Lead, "id" | "createdAt">) => void;
+  updateLead: (id: string, lead: Partial<Lead>) => void;
+  deleteLead: (id: string) => void;
+}
+
+export const useLeadStore = create<LeadStore>((set) => ({
+  leads: loadLeads(),
   addLead: (leadData) =>
-    set((state) => ({
-      leads: [
-        ...state.leads,
-        {
-          ...leadData,
-          id: Math.random().toString(36).substring(7),
-          createdAt: new Date().toISOString(),
-        },
-      ],
-    })),
+    set((state) => {
+      const newLead = {
+        ...leadData,
+        value: leadData.value ? Number(leadData.value) : 0,
+        budget: leadData.budget ? Number(leadData.budget) : 0,
+        id: Math.random().toString(36).substring(7),
+        createdAt: new Date().toISOString(),
+      };
+      const leads = [...state.leads, newLead];
+      saveLeads(leads);
+      return { leads };
+    }),
   updateLead: (id, leadData) =>
-    set((state) => ({
-      leads: state.leads.map((l) => (l.id === id ? { ...l, ...leadData } : l)),
-    })),
+    set((state) => {
+      const leads = state.leads.map((l) =>
+        l.id === id
+          ? {
+              ...l,
+              ...leadData,
+              value:
+                leadData.value !== undefined ? Number(leadData.value) : l.value,
+              budget:
+                leadData.budget !== undefined
+                  ? Number(leadData.budget)
+                  : l.budget,
+            }
+          : l,
+      );
+      saveLeads(leads);
+      return { leads };
+    }),
   deleteLead: (id) =>
-    set((state) => ({
-      leads: state.leads.filter((l) => l.id !== id),
-    })),
+    set((state) => {
+      const leads = state.leads.filter((l) => l.id !== id);
+      saveLeads(leads);
+      return { leads };
+    }),
 }));

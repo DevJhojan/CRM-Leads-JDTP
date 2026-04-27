@@ -105,7 +105,15 @@ export const LeadFormModal: React.FC<LeadFormModalProps> = ({
     >,
   ) => {
     const { name, value } = e.target;
-    setForm((prev) => ({ ...prev, [name]: value }));
+    // Forzar a number si es budget o value
+    if (name === "budget" || name === "value") {
+      setForm((prev) => ({
+        ...prev,
+        [name]: value === "" ? 0 : Number(value),
+      }));
+    } else {
+      setForm((prev) => ({ ...prev, [name]: value }));
+    }
   };
 
   const handleTechStackChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
